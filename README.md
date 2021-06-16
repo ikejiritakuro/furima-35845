@@ -9,8 +9,10 @@
 | encrypted_password | string              | null: false              |
 | first_name         | string              | null: false              |
 | last_name          | string              | null: false              |
-| birth_date         | text                | null: false              |
-
+| birth_date         | string              | null: false              |
+| nickname           | string              | null: false              |
+| first_name_kana    | string              | null: false              |
+| last_name_kana     | string              | null: false              |
 
 ### Association
 
@@ -24,15 +26,15 @@
 | syohin_name                         | string     | null: false       |
 | setumei                             | text       | null: false       |
 | category_id                         | integer    | null: false       |
-| jyoutai                             | integer    | null: false       |
-| haisoryou                           | integer    | null: false       |
-| area                                | integer    | null: false       |
-| date                                | references | foreign_key: true |
-| kakaku                              | string     | null: false       |
+| jyoutai_id                          | integer    | null: false       |
+| haisoryou_id                        | integer    | null: false       |
+| area_id                             | integer    | null: false       |
+| date_id                             | integer    | null: false       |
+| kakaku                              | text       | null: false       |
 
 ### Association
 
-- 
+- belongs_user
 - has_many :records
 
 ## records table
@@ -45,21 +47,21 @@
 
 ### Association
 
-- has_many :
-- has_many :
+- has_one :haisou
 
-##  haisos table
+
+##  haisous table
 
 | Column                              | Type       | Options           |
 |-------------------------------------|------------|-------------------|
 | postal_code                         | string     | null: false       |
 | prefectures                         | integer    | null: false       |
-| municipality                        | text       | null: false       |
-| address                             | text       | null: false       |
+| municipality                        | string     | null: false       |
+| address                             | string     | null: false       |
 | tatemono                            | string     |                   |
 | phone_number                        | string     | null: false       |
 
 
 ### Association
 
-- belongs_to :records
+- belongs_to :record
