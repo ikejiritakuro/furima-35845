@@ -3,38 +3,37 @@
 
 ## users table
 
-| Column             | Type                | Options                 |
-|--------------------|---------------------|-------------------------|
-| email              | string              | null: false             |
-| password           | string              | null: false             |
-| first_name         | string             | null: false             |
-| last_name          | text               | null: false             |
-| birth_date         | text                | null: false             |
+| Column             | Type                | Options                  |
+|--------------------|---------------------|------------------------- |
+| email              | string              | null: false  unique: true|
+| encrypted_password | string              | null: false              |
+| first_name         | string              | null: false              |
+| last_name          | string              | null: false              |
+| birth_date         | text                | null: false              |
 
 
 ### Association
 
 * has_many :syohins
-* has_many :　
+* has_many :records　
 
 ## syohins table
 
 | Column                              | Type       | Options           |
 |-------------------------------------|------------|-------------------|
-| image                               | string     | null: false       |
-| syohinname                          | text       | null: false       |
+| syohin_name                         | string     | null: false       |
 | setumei                             | text       | null: false       |
-| kategore                            | references | foreign_key: true |
-| jyoutai                             | string     | null: false       |
-| haisoryou                           | text       | null: false       |
-| area                                | text       | null: false       |
-| days                                | references | foreign_key: true |
-| kakaku                              | references | foreign_key: true |
+| category_id                         | integer    | null: false       |
+| jyoutai                             | integer    | null: false       |
+| haisoryou                           | integer    | null: false       |
+| area                                | integer    | null: false       |
+| date                                | references | foreign_key: true |
+| kakaku                              | string     | null: false       |
 
 ### Association
 
-- belongs_to :user
-- has_many :comments
+- 
+- has_many :records
 
 ## records table
 
@@ -46,19 +45,21 @@
 
 ### Association
 
-- belongs_to :prototype
-- belongs_to :user
+- has_many :
+- has_many :
 
 ##  haisos table
 
 | Column                              | Type       | Options           |
 |-------------------------------------|------------|-------------------|
-| yubinnum                            | string     | null: false       |
-| totodohuken                         | text       | null: false       |
-| sityouson                           | text       | null: false       |
-| banti                               | references | foreign_key: true |
-| tatemonomei                         | string     | null: false       |
-| denwanum                            | text       | null: false       |
+| postal_code                         | string     | null: false       |
+| prefectures                         | integer    | null: false       |
+| municipality                        | text       | null: false       |
+| address                             | text       | null: false       |
+| tatemono                            | string     |                   |
+| phone_number                        | string     | null: false       |
 
 
 ### Association
+
+- belongs_to :records
