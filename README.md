@@ -7,9 +7,9 @@
 |--------------------|---------------------|-------------------------|
 | email              | string              | null: false             |
 | password           | string              | null: false             |
-| firstname          | string              | null: false             |
-| lastname           | text                | null: false             |
-| seinengapi         | text                | null: false             |
+| first_name         | string             | null: false             |
+| last_name          | text               | null: false             |
+| birth_date         | text                | null: false             |
 
 
 ### Association
