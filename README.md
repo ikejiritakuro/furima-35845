@@ -34,8 +34,8 @@
 
 ### Association
 
-- belongs_user
-- has_many :records
+- belongs_to :user
+- has_one :record
 
 ## records table
 
@@ -55,7 +55,7 @@
 | Column                              | Type       | Options           |
 |-------------------------------------|------------|-------------------|
 | postal_code                         | string     | null: false       |
-| prefectures                         | integer    | null: false       |
+| prefectures                         | string     | null: false       |
 | municipality                        | string     | null: false       |
 | address                             | string     | null: false       |
 | tatemono                            | string     |                   |
