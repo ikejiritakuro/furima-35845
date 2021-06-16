@@ -16,10 +16,10 @@
 
 ### Association
 
-* has_many :syohins
+* has_many :items
 * has_many :records　
 
-## syohins table
+## items table
 
 | Column                              | Type       | Options           |
 |-------------------------------------|------------|-------------------|
@@ -27,7 +27,7 @@
 | setumei                             | text       | null: false       |
 | category_id                         | integer    | null: false       |
 | jyoutai_id                          | integer    | null: false       |
-| haisoryou_id                        | integer    | null: false       |
+| haisouryou_id                        | integer    | null: false       |
 | area_id                             | integer    | null: false       |
 | date_id                             | integer    | null: false       |
 | kakaku                              | text       | null: false       |
@@ -41,21 +41,23 @@
 
 | Column      | Type       | Options           |
 |-------------|------------|-------------------|
-| syohin      | text       | null: false       |
-| kounyusya   | references | foreign_key: true |
+| item        | text       | null: false       |
+| user        | references | foreign_key: true |
 
 
 ### Association
 
-- has_one :haisou
+- has_one :address
+- belongs_to :item
+- belongs_to :user
 
 
-##  haisous table
+##  address table
 
 | Column                              | Type       | Options           |
 |-------------------------------------|------------|-------------------|
 | postal_code                         | string     | null: false       |
-| prefectures                         | string     | null: false       |
+| prefectures                         | integer    | null: false       |
 | municipality                        | string     | null: false       |
 | address                             | string     | null: false       |
 | tatemono                            | string     |                   |
