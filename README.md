@@ -9,7 +9,7 @@
 | encrypted_password | string              | null: false              |
 | first_name         | string              | null: false              |
 | last_name          | string              | null: false              |
-| birth_date         | string              | null: false              |
+| birth_date         | date                | null: false              |
 | nickname           | string              | null: false              |
 | first_name_kana    | string              | null: false              |
 | last_name_kana     | string              | null: false              |
@@ -27,11 +27,11 @@
 | setumei                             | text       | null: false       |
 | category_id                         | integer    | null: false       |
 | jyoutai_id                          | integer    | null: false       |
-| haisouryou_id                        | integer    | null: false       |
+| haisouryou_id                       | integer    | null: false       |
 | area_id                             | integer    | null: false       |
 | date_id                             | integer    | null: false       |
-| kakaku                              | text       | null: false       |
-
+| kakaku                              | integer    | null: false       |
+| users                               | references | foreign_key: true |
 ### Association
 
 - belongs_to :user
@@ -41,7 +41,7 @@
 
 | Column      | Type       | Options           |
 |-------------|------------|-------------------|
-| item        | text       | null: false       |
+| item        | references | foreign_key: true |
 | user        | references | foreign_key: true |
 
 
@@ -62,7 +62,7 @@
 | address                             | string     | null: false       |
 | tatemono                            | string     |                   |
 | phone_number                        | string     | null: false       |
-
+| records                             | references | foreign_key: true | 
 
 ### Association
 
