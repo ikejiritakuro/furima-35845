@@ -1,24 +1,64 @@
 # README
+ 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users table
 
-Things you may want to cover:
+| Column             | Type                | Options                 |
+|--------------------|---------------------|-------------------------|
+| email              | string              | null: false             |
+| password           | string              | null: false             |
+| firstname          | string              | null: false             |
+| lastname           | text                | null: false             |
+| seinengapi         | text                | null: false             |
 
-* Ruby version
 
-* System dependencies
+### Association
 
-* Configuration
+* has_many :syohins
+* has_many :　
 
-* Database creation
+## syohins table
 
-* Database initialization
+| Column                              | Type       | Options           |
+|-------------------------------------|------------|-------------------|
+| image                               | string     | null: false       |
+| syohinname                          | text       | null: false       |
+| setumei                             | text       | null: false       |
+| kategore                            | references | foreign_key: true |
+| jyoutai                             | string     | null: false       |
+| haisoryou                           | text       | null: false       |
+| area                                | text       | null: false       |
+| days                                | references | foreign_key: true |
+| kakaku                              | references | foreign_key: true |
 
-* How to run the test suite
+### Association
 
-* Services (job queues, cache servers, search engines, etc.)
+- belongs_to :user
+- has_many :comments
 
-* Deployment instructions
+## records table
 
-* ...
+| Column      | Type       | Options           |
+|-------------|------------|-------------------|
+| syohin      | text       | null: false       |
+| kounyusya   | references | foreign_key: true |
+
+
+### Association
+
+- belongs_to :prototype
+- belongs_to :user
+
+##  haisos table
+
+| Column                              | Type       | Options           |
+|-------------------------------------|------------|-------------------|
+| yubinnum                            | string     | null: false       |
+| totodohuken                         | text       | null: false       |
+| sityouson                           | text       | null: false       |
+| banti                               | references | foreign_key: true |
+| tatemonomei                         | string     | null: false       |
+| denwanum                            | text       | null: false       |
+
+
+### Association
