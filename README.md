@@ -23,15 +23,16 @@
 
 | Column                              | Type       | Options           |
 |-------------------------------------|------------|-------------------|
-| syohin_name                         | string     | null: false       |
-| setumei                             | text       | null: false       |
+| name                                | string     | null: false       |
+| description                         | text       | null: false       |
 | category_id                         | integer    | null: false       |
-| jyoutai_id                          | integer    | null: false       |
-| haisouryou_id                       | integer    | null: false       |
+| product_status_id                   | integer    | null: false       |
+| delivery_charge_id                  | integer    | null: false       |
 | area_id                             | integer    | null: false       |
 | date_id                             | integer    | null: false       |
-| kakaku                              | integer    | null: false       |
-| users                               | references | foreign_key: true |
+| price                               | integer    | null: false       |
+| user                                | references | foreign_key: true |
+
 ### Association
 
 - belongs_to :user
@@ -57,12 +58,12 @@
 | Column                              | Type       | Options           |
 |-------------------------------------|------------|-------------------|
 | postal_code                         | string     | null: false       |
-| prefectures                         | integer    | null: false       |
+| prefectures_id                      | integer    | null: false       |
 | municipality                        | string     | null: false       |
 | address                             | string     | null: false       |
-| tatemono                            | string     |                   |
+| building                            | string     |                   |
 | phone_number                        | string     | null: false       |
-| records                             | references | foreign_key: true | 
+| record                              | references | foreign_key: true | 
 
 ### Association
 
