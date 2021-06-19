@@ -73,19 +73,39 @@ RSpec.describe User, type: :model do
       it 'first_name_kanaは全角のカタカナで記入しないと登録できないこと' do
         @user.first_name_kana = 'wada'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name kana 全角文字を使用してください")
+        expect(@user.errors.full_messages).to include("First name kana カタカナを使用してください")
       end
       it 'last_name_kanaは全角のカタカナで記入しないと登録できないこと' do
         @user.last_name_kana = 'takumi'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name kana 全角文字を使用してください")
+        expect(@user.errors.full_messages).to include("Last name kana カタカナを使用してください")
       end
       it '重複したemailが存在する場合登録できないこと' do
         @user.save
         another_user = FactoryBot.build(:user, email: @user.email)
         another_user.valid?
-        expect(another_user.errors.full_messages).to include('Email has already been taken')
+        expect(another_user.errors.full_messages).to include("Email has already been taken")
       end 
+      it 'emailは@無しでは登録できないこと' do
+        @user.email = 'hogehuga.com'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email is invalid")
+      end
+      it 'passwordは数字のみでは登録できないこと' do
+        @user.password = '123456'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password には英字と数字の両方を含めて設定してください")
+      end
+      it 'passwordは英字のみでは登録できないこと' do
+        @user.password = 'abcdef'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password には英字と数字の両方を含めて設定してください")
+      end
+      it 'passwordは全角では登録できないこと' do
+        @user.password = 'ああああああ'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password には英字と数字の両方を含めて設定してください")
+      end
     end
     context '新規登録ができる時' do
       it 'nicknameとemail、passwordとpassword_confirmationが存在すれば登録できること' do
@@ -96,9 +116,10 @@ RSpec.describe User, type: :model do
       end
       it 'first_name_kana,last_name_kanaが存在すれば登録できること' do
         expect(@user).to be_valid
-      end
+      end 
       it 'birth_dateが存在すれば登録できること' do
-      end         
+        expect(@user).to be_valid
+      end      
     end
   end
 end
