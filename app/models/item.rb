@@ -18,11 +18,10 @@ class Item < ApplicationRecord
     validates :description
     validates :name
     validates :image
+    validates :price, format:{ with: /\A[0-9]+\z/, message: '半角数値にしてください' }
   end
 
   validates_inclusion_of :price, in: 300..9999999
-
-  validates :price, presence: true, format:{ with: /\A[0-9]+\z/, message: '半角数値にしてください' }
 
   with_options numericality: { other_than: 1 } do
     validates :area_id
