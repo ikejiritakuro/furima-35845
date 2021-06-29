@@ -1,6 +1,8 @@
 class RecordsController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :create]
   before_action :set_item, only: [:index, :create]
   before_action :sold_out_item, only: [:index]
+  before_action :record_item, only:[:index]
 
   def index
     @records_addresses = RecordsAddresses.new
@@ -45,5 +47,11 @@ class RecordsController < ApplicationController
 
   def sold_out_item
     redirect_to root_path if @item.record.present?
-  end   
+  end
+  
+  def record_item
+    if @item.user.id != current_user.id
+      redirect_to root_path
+    end
+  end
 end
