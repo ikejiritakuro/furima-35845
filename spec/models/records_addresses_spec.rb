@@ -31,7 +31,7 @@ RSpec.describe Record, type: :model do
         expect(@record.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
       end
       it '都道府県が空では登録できないこと' do
-        @record.prefecture_id = --
+        @record.prefecture_id = 1
         @record.valid?
         expect(@record.errors.full_messages).to include("Prefecture can't be blank")
       end
