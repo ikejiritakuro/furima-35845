@@ -15,6 +15,7 @@ RSpec.describe Record, type: :model do
         expect(@record).to be_valid
       end
       it '建物名が無くても購入できること' do
+        expect(@record).to be_valid
       end
     end
     context '商品購入できない時' do
@@ -29,7 +30,7 @@ RSpec.describe Record, type: :model do
         expect(@record.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
       end
       it '都道府県が空では登録できないこと' do
-        @record.prefecture_id = ''
+        @record.prefecture_id = '--'
         @record.valid?
         expect(@record.errors.full_messages).to include("Prefecture can't be blank")
       end
@@ -54,12 +55,12 @@ RSpec.describe Record, type: :model do
         expect(@record.errors.full_messages).to include("Phone number 半角数字で入力して下さい")
       end
       it '電話番号が9桁以下だと登録できないこと' do
-        @record.phone_number = 12345678
+        @record.phone_number = 123456789
         @record.valid?
         expect(@record.errors.full_messages).to include("Phone number 半角数字で入力して下さい")
       end
       it '電話番号が12桁以上だと登録できないこと' do
-        @record.phone_number = 1234567898765
+        @record.phone_number = 123456789876
         @record.valid?
         expect(@record.errors.full_messages).to include("Phone number 半角数字で入力して下さい")
       end

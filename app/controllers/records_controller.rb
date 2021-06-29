@@ -49,7 +49,7 @@ class RecordsController < ApplicationController
   end
   
   def record_item
-    if @item.user.id != current_user.id
+    if @item.user.id == current_user.id
       redirect_to root_path
     end
   end
