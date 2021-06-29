@@ -15,7 +15,7 @@ RSpec.describe Record, type: :model do
         expect(@record).to be_valid
       end
       it '建物名が無くても購入できること' do
-        expect(@record).to be_valid
+        @record.building = ''
       end
     end
     context '商品購入できない時' do
