@@ -14,6 +14,8 @@ RSpec.describe Record, type: :model do
       it '商品が購入できる時' do
         expect(@record).to be_valid
       end
+      it '建物名が無くても購入できること' do
+      end
     end
     context '商品購入できない時' do
       it '郵便番号が空では登録できないこと' do
@@ -51,10 +53,30 @@ RSpec.describe Record, type: :model do
         @record.valid?
         expect(@record.errors.full_messages).to include("Phone number 半角数字で入力して下さい")
       end
-      it "tokenが空では登録できないこと" do
+      it '電話番号が9桁以下だと登録できないこと' do
+        @record.phone_number = 12345678
+        @record.valid?
+        expect(@record.errors.full_messages).to include("Phone number 半角数字で入力して下さい")
+      end
+      it '電話番号が12桁以上だと登録できないこと' do
+        @record.phone_number = 1234567898765
+        @record.valid?
+        expect(@record.errors.full_messages).to include("Phone number 半角数字で入力して下さい")
+      end
+      it 'tokenが空では登録できないこと' do
         @record.token = nil
         @record.valid?
         expect(@record.errors.full_messages).to include("Token can't be blank")
+      end
+      it 'userと紐づいていないと登録できないこと' do
+        @record.user_id = nil
+        @record.valid?
+        expect(@record.errors.full_messages).to include("User can't be blank")
+      end
+      it 'itemと紐づいていないと登録できないこと' do
+        @record.item_id = nil
+        @record.valid?
+        expect(@record.errors.full_messages).to include("Item can't be blank")
       end
     end
   end

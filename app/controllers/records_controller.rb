@@ -6,7 +6,6 @@ class RecordsController < ApplicationController
 
   def index
     @records_addresses = RecordsAddresses.new
-    #@record = Record.new(record_params)
   end
 
 
