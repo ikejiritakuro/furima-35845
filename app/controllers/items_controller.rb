@@ -25,6 +25,7 @@ class ItemsController < ApplicationController
 
 
   def edit
+    redirect_to root_path if @item.record.present?
   end
 
   def update
