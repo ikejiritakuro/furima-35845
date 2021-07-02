@@ -1,10 +1,12 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:show, :edit, :update, :destroy ]
-  before_action :move_to_index, except: [:index, :show, :new, :create ]
+  before_action :move_to_index, except: [:index, :show, :new, :create, :search ]
+  before_action :search_item, only: [:index, :search, :show]
 
   def index
     @items = Item.order(id: 'DESC')
+    set_item_column
   end
 
   def new
@@ -41,6 +43,10 @@ class ItemsController < ApplicationController
       redirect_to root_path
   end
 
+  def search
+    @results = @p.result
+  end
+
 
 
   private
@@ -54,9 +60,15 @@ class ItemsController < ApplicationController
     end
   end
 
-  private
   def set_item
     @item = Item.find(params[:id])
-
   end 
+
+  def search_item
+    @p = Item.ransack(params[:q])  
+  end
+
+  def set_item_column
+    @item_name = Item.select("name").distinct  
+  end
 end
